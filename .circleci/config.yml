@@ -1,0 +1,143 @@
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+defaults: &defaults
+  working_directory: ~/code
+  docker:
+    - image: circleci/android:api-28-alpha
+  environment:
+    JVM_OPTS: -Xmx4g
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *defaults
+    steps:
+      - checkout
+      - save_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/code
+
+  download_dependencies:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+
+  release:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - run:
+          name: Build
+          command: ./gradlew assemble
+      - save_cache:
+          paths:
+            - banneritem/build/outputs/aar
+          key: aar-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - store_artifacts:
+          path: banneritem/build/outputs/aar
+          destination: aar
+      - save_cache:
+          paths:
+            - banneritem/build/libs
+          key: artifacts-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - store_artifacts:
+          path: banneritem/build/libs
+          destination: libs
+
+  tests:
+    <<: *defaults
+    steps:
+      - restore_cache:
+         key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+      - store_artifacts:
+          path: banneritem/build/reports
+          destination: reports
+      - store_test_results:
+          path: banneritem/build/test-results
+
+  stable:
+    <<: *defaults
+    steps:
+      - run:
+          command: echo Library Stable
+
+  check_dependencies:
+    <<: *defaults
+    steps:
+    - restore_cache:
+        key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+    - restore_cache:
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+    - run:
+        name: Dependencies Check
+        command: ./gradlew dependencyUpdates -Drevision=release
+    - store_artifacts:
+        path: banneritem/build/dependencyUpdates/report.txt
+        destination: dependencies/checks.txt
+
+  bintray:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - restore_cache:
+          key: aar-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: artifacts-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Upload library to bintray
+          command: ./gradlew bintrayUpload
+      - store_artifacts:
+          path: banneritem/build/publications/Bintray
+          destination: pom
+
+workflows:
+  version: 2
+  assemble_and_test:
+    jobs:
+      - checkout_code
+      - download_dependencies:
+          requires:
+            - checkout_code
+      - release:
+          requires:
+            - download_dependencies
+      - check_dependencies:
+          requires:
+          - download_dependencies
+      - tests:
+          requires:
+            - download_dependencies
+      - stable:
+          requires:
+           - release
+           - tests
+#      - bintray:
+#          filters:
+#            branches:
+#              only: master
+#          requires:
+#            - stable
