@@ -20,10 +20,10 @@ plugins{
 
 ext {
     bintrayRepo = 'Android'
-    bintrayName = 'Banneritem'
+    bintrayName = 'Banner-Item'
 
-    publishedGroupId = 'com.artear.banneritem'
-    libraryName = 'Banneritem'
+    publishedGroupId = 'com.artear.cover'
+    libraryName = 'Banner-Item'
     artifact = 'banneritem'
 
     libraryDescription = 'Banneritem sample library'
@@ -84,6 +84,14 @@ dependencies {
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //CoverItem
+    implementation "com.artear.cover:coveritem:0.0.5"
+    //Domain
+    implementation "com.artear.domain:domain:0.0.5"
+
+    //Ads
+    implementation "com.google.firebase:firebase-ads:17.2.0"
 
 }
 
