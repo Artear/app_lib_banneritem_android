@@ -53,7 +53,7 @@ buildscript {
         firebaseAdsVersion = '17.2.0'
 
         //MultiDex
-        multidexVersion = '2.0.0'
+        multidexVersion = '2.0.1'
 
     }
 }
