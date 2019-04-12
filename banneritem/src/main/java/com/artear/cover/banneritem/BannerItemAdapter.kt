@@ -24,7 +24,7 @@ import com.artear.cover.coveritem.presentation.model.ArtearItem
 import com.artear.cover.coveritem.presentation.model.ArtearSection
 
 
-class DfpAdapter : ItemAdapter<DfpData<*>> {
+class BannerItemAdapter : ItemAdapter<DfpData<*>> {
 
     override fun isForViewType(item: ArtearItem): Boolean {
         return item.model is DfpData

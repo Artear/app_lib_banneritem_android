@@ -15,17 +15,19 @@
  */
 package com.artear.cover.banneritem
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import com.artear.cover.coveritem.presentation.model.ArtearItem
+import com.artear.cover.coveritem.presentation.model.ArtearSection
+import com.artear.cover.coveritem.repository.model.block.Block
+import com.artear.domain.coroutine.DataShaper
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see [Testing documentation](http://d.android.com/tools/testing)
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, (2 + 2).toLong())
+
+class DfpShaper : DataShaper<Block, ArtearItem> {
+
+    override suspend fun transform(input: Block): ArtearItem {
+        val blockContentDfp = (input.data as BlockContentDfp)
+        val data = DfpData(blockContentDfp.name, blockContentDfp.size, DfpStyle())
+        return ArtearItem(data, ArtearSection())
     }
+
+
 }
