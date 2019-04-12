@@ -86,13 +86,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //CoverItem
-    implementation "com.artear.cover:coveritem:0.0.5"
+    implementation "com.artear.cover:coveritem:$coverItemVersion"
     //Domain
-    implementation "com.artear.domain:domain:0.0.5"
-
+    implementation "com.artear.domain:domain:$domainVersion"
     //Ads
-    implementation "com.google.firebase:firebase-ads:17.2.0"
-
+    implementation "com.google.firebase:firebase-ads:$firebaseAdsVersion"
 }
 
 dependencyUpdates.resolutionStrategy {

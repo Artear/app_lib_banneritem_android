@@ -43,5 +43,14 @@ buildscript {
         // Constraint Layout
         constraintLayoutVersion = '1.1.3'
 
+        //Cover
+        coverItemVersion = '0.0.5'
+
+        //Domain
+        domainVersion = '0.0.5'
+
+        //Firebase Ads
+        firebaseAdsVersion = '17.2.0'
+
     }
 }
