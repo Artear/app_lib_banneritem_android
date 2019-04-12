@@ -52,5 +52,8 @@ buildscript {
         //Firebase Ads
         firebaseAdsVersion = '17.2.0'
 
+        //MultiDex
+        multidexVersion = '2.0.0'
+
     }
 }
