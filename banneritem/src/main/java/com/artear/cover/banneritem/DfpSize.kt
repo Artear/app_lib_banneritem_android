@@ -21,7 +21,6 @@ import android.os.Parcelable
 /**
  * @param url can be empty when is created from article click
  */
-//@JsonAdapter(SizeDeserializer::class)
 data class DfpSize(val width: Int, val height: Int) : Parcelable {
 
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
