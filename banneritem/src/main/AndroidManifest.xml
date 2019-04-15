@@ -2,10 +2,7 @@
     package="com.artear.cover.banneritem">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-        android:name="androidx.multidex.MultiDexApplication">
-
+    <application>
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />

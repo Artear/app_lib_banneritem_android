@@ -62,7 +62,6 @@ android {
         versionCode vCode
         versionName libraryVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -73,8 +72,6 @@ android {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation "androidx.multidex:multidex:$multidexVersion"
 
     //Test
     testImplementation "junit:junit:$junitVersion"
