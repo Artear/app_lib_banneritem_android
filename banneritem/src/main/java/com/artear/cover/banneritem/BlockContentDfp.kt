@@ -16,7 +16,8 @@
 package com.artear.cover.banneritem
 
 import com.artear.cover.coveritem.repository.model.BlockContent
+import com.artear.tools.media.Size
 import com.google.gson.annotations.JsonAdapter
 
 @JsonAdapter(BlockContentDfpDeserializer::class)
-data class BlockContentDfp(val id: String, val name: String, val size: DfpSize) : BlockContent()
+data class BlockContentDfp(val id: String, val name: String, val size: Size) : BlockContent()
