@@ -17,8 +17,9 @@ package com.artear.cover.banneritem
 
 import com.artear.cover.coveritem.presentation.model.ArtearObject
 import com.artear.cover.coveritem.presentation.model.ArtearStyle
+import com.artear.tools.media.Size
 
-data class DfpData<T : DfpStyle>(val name: String, val size: DfpSize,
+data class DfpData<T : DfpStyle>(val name: String, val size: Size,
                                  val style: T) : ArtearObject<T>()
 
 open class DfpStyle : ArtearStyle()

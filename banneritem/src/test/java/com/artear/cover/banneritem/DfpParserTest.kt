@@ -15,8 +15,12 @@
  */
 package com.artear.cover.banneritem
 
+import com.artear.cover.coveritem.repository.deserializer.SizeDeserializer
+import com.artear.tools.media.Size
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import com.google.gson.JsonSyntaxException
 import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.Assert
@@ -31,36 +35,71 @@ import org.junit.Test
  */
 class DfpParserTest {
 
-    private lateinit var responseDfpBlock: ResponseBody
+    companion object {
+        private const val FOLDER = "banner"
+        private const val JSON_TYPE = "application/json"
+
+        private const val DATA = "data"
+
+        private const val DFP_BLOCK = "dfp_block"
+        private const val DFP_BLOCK_MISS_SIZE = "dfp_block_miss_size"
+        private const val DFP_BLOCK_WRONG_SIZE = "dfp_block_wrong_size"
+        private const val DFP_BLOCK_WRONG_DATA_SIZE = "dfp_block_wrong_data_size"
+    }
+
     private lateinit var gson: Gson
 
     @Before
     fun setUp() {
+        gson = GsonBuilder()
+                .registerTypeAdapter(Size::class.java, SizeDeserializer())
+                .create()
+    }
 
+    private fun loadLocalJson(jsonName: String): ResponseBody {
         val loader = javaClass.classLoader!!
-        val dfpBlock = TestUtils().loadJSONFromAsset(loader, "banner", "dfp_block")
-        val mediaType = MediaType.parse("application/json")
+        val jsonString = TestUtils().loadJSONFromAsset(loader, FOLDER, jsonName)
+        val mediaType = MediaType.parse(JSON_TYPE)
+        return ResponseBody.create(mediaType, jsonString!!)
+    }
 
-        responseDfpBlock = ResponseBody.create(mediaType, dfpBlock!!)
-
-        gson = Gson()
+    private fun simpleCall(responseBody: ResponseBody): BlockContentDfp {
+        val jsonObject = JsonParser().parse(responseBody.string()).asJsonObject
+        val jsonObjectData = jsonObject.getAsJsonObject(DATA)
+        return gson.fromJson(jsonObjectData, BlockContentDfp::class.java)
     }
 
     @Test
     fun responseDfpNameTest() {
-        val jsonObject = JsonParser().parse(responseDfpBlock.string()).asJsonObject
-        val jsonObjectData = jsonObject.getAsJsonObject("data")
-        val blockContentDfp = gson.fromJson(jsonObjectData, BlockContentDfp::class.java)
+        val responseDfpBlock = loadLocalJson(DFP_BLOCK)
+        val blockContentDfp = simpleCall(responseDfpBlock)
         Assert.assertEquals("/113951150/tn/app/home/caja", blockContentDfp.name)
     }
 
     @Test
     fun responseDfpSizeTest() {
-        val jsonObject = JsonParser().parse(responseDfpBlock.string()).asJsonObject
-        val jsonObjectData = jsonObject.getAsJsonObject("data")
-        val blockContentDfp = gson.fromJson(jsonObjectData, BlockContentDfp::class.java)
+        val responseDfpBlock = loadLocalJson(DFP_BLOCK)
+        val blockContentDfp = simpleCall(responseDfpBlock)
         Assert.assertEquals(300, blockContentDfp.size.width)
         Assert.assertEquals(250, blockContentDfp.size.height)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun responseDfpMissSizeTest() {
+        val responseDfpBlockMissSize = loadLocalJson(DFP_BLOCK_MISS_SIZE)
+        simpleCall(responseDfpBlockMissSize)
+    }
+
+    @Test(expected = JsonSyntaxException::class)
+    fun responseDfpEmptySizeTest() {
+        val responseDfpBlockWrongSize = loadLocalJson(DFP_BLOCK_WRONG_SIZE)
+        simpleCall(responseDfpBlockWrongSize)
+    }
+
+    @Test(expected = NumberFormatException::class)
+    fun responseDfpWrongDataSizeTest() {
+        val responseDfpBlockWrongDataSize = loadLocalJson(DFP_BLOCK_WRONG_DATA_SIZE)
+        simpleCall(responseDfpBlockWrongDataSize)
     }
 
 

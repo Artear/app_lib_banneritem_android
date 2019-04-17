@@ -1,6 +1,7 @@
 package com.artear.cover.banneritem
 
-import com.artear.cover.coveritem.repository.getSafeModelObject
+import com.artear.cover.coveritem.repository.getModelObject
+import com.artear.tools.media.Size
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -12,7 +13,7 @@ class BlockContentDfpDeserializer : JsonDeserializer<BlockContentDfp> {
 
         val id = json.asJsonObject.get("id").asString
         val name = json.asJsonObject.get("name").asString
-        val dfpSize = json.getSafeModelObject("size", context, DfpSize::class.java)!!
+        val dfpSize = json.getModelObject("size", context, Size::class.java)
 
         return BlockContentDfp(id, name, dfpSize)
     }
