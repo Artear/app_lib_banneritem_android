@@ -25,7 +25,8 @@ class DfpShaper : DataShaper<Block, ArtearItem> {
 
     override suspend fun transform(input: Block): ArtearItem {
         val blockContentDfp = (input.data as BlockContentDfp)
-        val data = DfpData(blockContentDfp.name, blockContentDfp.size, DfpStyle())
+
+        val data = DfpData(blockContentDfp.name, blockContentDfp.size, DfpStyle(input.style.weight))
         return ArtearItem(data, ArtearSection())
     }
 

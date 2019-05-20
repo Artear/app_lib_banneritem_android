@@ -1,24 +1,22 @@
-# Base
-Base Library
+# Banner Item Library
 
-- Library for clone and have ready a library framework for start to work
-
+- Library for use with cover views. Provide one of many adapter and shaper for that library
 
 Download
 --------
 via Maven:
 ```xml
 <dependency>
-  <groupId>com.artear</groupId>
-  <artifactId>library</artifactId>
-  <version>0.0.1</version>
+  <groupId>com.artear.cover</groupId>
+  <artifactId>banneritem</artifactId>
+  <version>0.0.6</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear:library:0.0.1'
+implementation 'com.artear.cover:banneritem:0.0.6'
 ```
-UI view Lib requires at minimum Java 7 or Android 4.1.
+Banner Item Library requires at minimum Java 7 or Android 4.1.
 
 License
 =======

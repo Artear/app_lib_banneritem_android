@@ -2,31 +2,33 @@ buildscript {
     ext {
 
         // -------- Library Version ---------
-        libraryVersion = '0.0.5'
+        libraryVersion = '0.0.6'
 
 
         // ------------ Kotlin --------------
-        kotlin_version = '1.3.21'
+        kotlin_version = '1.3.31'
+        kotlinVersion = kotlin_version
 
 
         // ------------ Gradle --------------
-        gradle_build_version = '3.3.2'
+        gradle_build_version = '3.4.1'
 
 
         // ------------ Bintray -------------
-        bintray_version = '1.8.4'
+        bintrayVersion = '1.8.4'
 
 
         // ------------ Dokka ---------------
-        dokka_version = '0.9.18'
+        dokkaVersion = '0.9.18'
 
 
         // ---------- dcendents -------------
-        dcendents_version = '2.1'
+        dcendentsVersion = '2.1'
 
 
         // ------------- Test ---------------
         junitVersion = '4.12'
+        okHttpVersion = '3.14.2'
         testRunnerVersion = '1.1.1'
         espressoCoreVersion = '3.1.1'
         testCoreVersion = '1.1.0'
@@ -44,10 +46,10 @@ buildscript {
         constraintLayoutVersion = '1.1.3'
 
         //Cover
-        coverItemVersion = '0.0.6'
+        coverItemVersion = '0.0.9'
 
         //Domain
-        domainVersion = '0.0.5'
+        domainVersion = '0.0.6'
 
         //Firebase Ads
         firebaseAdsVersion = '17.2.0'
