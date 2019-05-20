@@ -44,10 +44,10 @@ buildscript {
         constraintLayoutVersion = '1.1.3'
 
         //Cover
-        coverItemVersion = '0.0.6'
+        coverItemVersion = '0.0.9'
 
         //Domain
-        domainVersion = '0.0.5'
+        domainVersion = '0.0.6'
 
         //Firebase Ads
         firebaseAdsVersion = '17.2.0'
