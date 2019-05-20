@@ -90,10 +90,28 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
       - run:
           name: Dependencies Check
+          command: ./gradlew dependencyUpdates -Drevision=release
+      - store_artifacts:
+          path: banneritem/build/dependencyUpdates/report.txt
+          destination: dependencies/checks.txt
+
+  pom_generation:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - run:
+          name: Pom Generation
           command: ./gradlew generatePomFileForBintrayPublication
       - store_artifacts:
           path: banneritem/build/publications/Bintray
           destination: pom
+      - save_cache:
+          paths:
+            - banneritem/build/publications/Bintray
+          key: pom-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
 
   bintray:
     <<: *defaults
@@ -104,6 +122,8 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
       - restore_cache:
           key: aar-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: pom-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: artifacts-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - run:
@@ -130,10 +150,14 @@ workflows:
       - tests:
           requires:
             - download_dependencies
+      - pom_generation:
+          requires:
+            - download_dependencies
       - stable:
           requires:
             - release
             - tests
+            - pom_generation
       - bintray:
           filters:
             branches:
