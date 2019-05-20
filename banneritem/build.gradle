@@ -26,7 +26,7 @@ ext {
     libraryName = 'Banner-Item'
     artifact = 'banneritem'
 
-    libraryDescription = 'Banneritem sample library'
+    libraryDescription = 'Library for use with cover views. Provide one of many adapter and shaper for that library'
 
     siteUrl = 'https://github.com/Artear/app_lib_banneritem_android'
     gitUrl = 'https://github.com/Artear/app_lib_banneritem_android.git'
@@ -56,6 +56,12 @@ android {
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
 
+    libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.getName()}-${defaultConfig.versionName}-${variant.name}.aar"
+        }
+    }
+
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
@@ -75,6 +81,7 @@ dependencies {
 
     //Test
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testCoreVersion"
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"

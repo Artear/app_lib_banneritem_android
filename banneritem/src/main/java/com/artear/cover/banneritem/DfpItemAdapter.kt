@@ -18,13 +18,12 @@ package com.artear.cover.banneritem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.artear.cover.coveritem.presentation.adapter.ArtearViewHolder
-import com.artear.cover.coveritem.presentation.adapter.ItemAdapter
 import com.artear.cover.coveritem.presentation.model.ArtearItem
 import com.artear.cover.coveritem.presentation.model.ArtearSection
 
 
-class DfpItemAdapter : ItemAdapter<DfpData<*>> {
+class DfpItemAdapter : SpanItemAdapter<DfpData<*>> {
+
 
     override fun isForViewType(item: ArtearItem): Boolean {
         return item.model is DfpData
@@ -39,6 +38,18 @@ class DfpItemAdapter : ItemAdapter<DfpData<*>> {
     override fun onBindViewHolderBase(holder: ArtearViewHolder<DfpData<*>>, model: DfpData<*>,
                                       artearSection: ArtearSection) {
         holder.bind(model, artearSection)
+    }
+
+    override fun onSpanSizeRequired(model: DfpData<*>): Int {
+        return spanSize(model.style.weight)
+    }
+
+    private fun spanSize(weight: Float?): Int {
+        var result = 1
+        weight?.let {
+            result = (it * 2).toInt()
+        }
+        return result
     }
 
 

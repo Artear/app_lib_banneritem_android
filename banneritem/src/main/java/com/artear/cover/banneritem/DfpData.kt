@@ -22,4 +22,4 @@ import com.artear.tools.media.Size
 data class DfpData<T : DfpStyle>(val name: String, val size: Size,
                                  val style: T) : ArtearObject<T>()
 
-open class DfpStyle : ArtearStyle()
+open class DfpStyle(val weight: Float? = 1f) : ArtearStyle()
