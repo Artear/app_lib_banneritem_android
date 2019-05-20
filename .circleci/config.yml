@@ -1,13 +1,12 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 defaults: &defaults
   working_directory: ~/code
   docker:
     - image: circleci/android:api-28-alpha
+
   environment:
     JVM_OPTS: -Xmx4g
+    GRADLE_OPTS: -Xmx4g -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
+
 
 version: 2
 jobs:
@@ -64,7 +63,7 @@ jobs:
     <<: *defaults
     steps:
       - restore_cache:
-         key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
       - run:
@@ -85,16 +84,16 @@ jobs:
   check_dependencies:
     <<: *defaults
     steps:
-    - restore_cache:
-        key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
-    - restore_cache:
-        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
-    - run:
-        name: Dependencies Check
-        command: ./gradlew dependencyUpdates -Drevision=release
-    - store_artifacts:
-        path: banneritem/build/dependencyUpdates/report.txt
-        destination: dependencies/checks.txt
+      - restore_cache:
+          key: checkout-cache-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
+      - run:
+          name: Dependencies Check
+          command: ./gradlew dependencyUpdates -Drevision=release
+      - store_artifacts:
+          path: banneritem/build/dependencyUpdates/report.txt
+          destination: dependencies/checks.txt
 
   bintray:
     <<: *defaults
@@ -127,14 +126,14 @@ workflows:
             - download_dependencies
       - check_dependencies:
           requires:
-          - download_dependencies
+            - download_dependencies
       - tests:
           requires:
             - download_dependencies
       - stable:
           requires:
-           - release
-           - tests
+            - release
+            - tests
       - bintray:
           filters:
             branches:
