@@ -6,11 +6,11 @@ buildscript {
 
 
         // ------------ Kotlin --------------
-        kotlin_version = '1.3.21'
+        kotlin_version = '1.3.31'
 
 
         // ------------ Gradle --------------
-        gradle_build_version = '3.3.2'
+        gradle_build_version = '3.4.0'
 
 
         // ------------ Bintray -------------
