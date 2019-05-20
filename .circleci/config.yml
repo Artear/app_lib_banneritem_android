@@ -92,8 +92,8 @@ jobs:
           name: Dependencies Check
           command: ./gradlew generatePomFileForBintrayPublication
       - store_artifacts:
-          path: banneritem/build/dependencyUpdates/report.txt
-          destination: dependencies/checks.txt
+          path: banneritem/build/publications/Bintray
+          destination: pom
 
   bintray:
     <<: *defaults
