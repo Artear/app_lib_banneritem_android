@@ -90,7 +90,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "banneritem/build.gradle" }}
       - run:
           name: Dependencies Check
-          command: ./gradlew dependencyUpdates -Drevision=release
+          command: ./gradlew generatePomFileForBintrayPublication
       - store_artifacts:
           path: banneritem/build/dependencyUpdates/report.txt
           destination: dependencies/checks.txt
