@@ -151,6 +151,9 @@ workflows:
           requires:
             - download_dependencies
       - pom_generation:
+          filters:
+            branches:
+              only: master
           requires:
             - download_dependencies
       - stable:
