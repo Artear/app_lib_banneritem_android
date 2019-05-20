@@ -81,6 +81,7 @@ dependencies {
 
     //Test
     testImplementation "junit:junit:$junitVersion"
+    testImplementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     androidTestImplementation "androidx.test:core:$testCoreVersion"
     androidTestImplementation "androidx.test.ext:junit:$testCoreVersion"
     androidTestImplementation "androidx.test:runner:$testRunnerVersion"
