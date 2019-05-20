@@ -49,7 +49,7 @@ buildscript {
         coverItemVersion = '0.0.9'
 
         //Domain
-        domainVersion = '0.0.7'
+        domainVersion = '0.0.6'
 
         //Firebase Ads
         firebaseAdsVersion = '17.2.0'
