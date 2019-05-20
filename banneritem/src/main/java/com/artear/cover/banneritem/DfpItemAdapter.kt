@@ -18,6 +18,8 @@ package com.artear.cover.banneritem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.artear.cover.coveritem.presentation.contract.ArtearViewHolder
+import com.artear.cover.coveritem.presentation.contract.SpanItemAdapter
 import com.artear.cover.coveritem.presentation.model.ArtearItem
 import com.artear.cover.coveritem.presentation.model.ArtearSection
 

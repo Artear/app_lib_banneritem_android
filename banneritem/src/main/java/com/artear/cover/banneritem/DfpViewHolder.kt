@@ -19,6 +19,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.artear.cover.coveritem.presentation.contract.ArtearViewHolder
 import com.artear.cover.coveritem.presentation.model.ArtearSection
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdSize

@@ -4,16 +4,15 @@
     android:id="@+id/dfp_linearlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="20dp"
     android:background="@android:color/transparent"
-    >
+    android:orientation="vertical"
+    android:paddingBottom="20dp">
+
     <FrameLayout
         android:id="@+id/dfp_banner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="20dp"
-        tools:layout_height="250dp"
-        />
+        tools:layout_height="250dp" />
 
 </LinearLayout>
