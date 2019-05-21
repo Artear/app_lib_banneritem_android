@@ -133,8 +133,8 @@ workflows:
             - release
             - tests
       - bintray:
-#          filters:
-#            branches:
-#              only: master
+          filters:
+            branches:
+              only: master
           requires:
             - stable
