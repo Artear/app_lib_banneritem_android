@@ -5,8 +5,6 @@ defaults: &defaults
 
   environment:
     JVM_OPTS: -Xmx4g
-    GRADLE_OPTS: -Xmx4g -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
-
 
 version: 2
 jobs:
@@ -135,8 +133,8 @@ workflows:
             - release
             - tests
       - bintray:
-          filters:
-            branches:
-              only: master
+#          filters:
+#            branches:
+#              only: master
           requires:
             - stable
