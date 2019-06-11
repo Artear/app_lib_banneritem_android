@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -32,6 +32,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().context
-        assertEquals("com.artear.banneritem", appContext.packageName)
+        assertEquals("com.artear.stevedore.banneritem", appContext.packageName)
     }
 }

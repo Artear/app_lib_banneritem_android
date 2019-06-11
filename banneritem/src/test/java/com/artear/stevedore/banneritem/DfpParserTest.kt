@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
-import com.artear.cover.coveritem.repository.deserializer.SizeDeserializer
+import com.artear.stevedore.stevedoreitems.repository.deserializer.SizeDeserializer
 import com.artear.tools.media.Size
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -63,10 +63,10 @@ class DfpParserTest {
         return ResponseBody.create(mediaType, jsonString!!)
     }
 
-    private fun simpleCall(responseBody: ResponseBody): BlockContentDfp {
+    private fun simpleCall(responseBody: ResponseBody): BoxDataDfp {
         val jsonObject = JsonParser().parse(responseBody.string()).asJsonObject
         val jsonObjectData = jsonObject.getAsJsonObject(DATA)
-        return gson.fromJson(jsonObjectData, BlockContentDfp::class.java)
+        return gson.fromJson(jsonObjectData, BoxDataDfp::class.java)
     }
 
     @Test

@@ -4,9 +4,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayVersion"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:$dcendentsVersion"
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$dokkaVersion"
+        classpath lib.plugin.bintray
+        classpath lib.plugin.dcendents
+        classpath lib.plugin.dokka
     }
 }
 
@@ -20,13 +20,13 @@ plugins {
 
 ext {
     bintrayRepo = 'Android'
-    bintrayName = 'Banner-Item'
+    bintrayName = 'BannerItem'
 
-    publishedGroupId = 'com.artear.cover'
+    publishedGroupId = 'com.artear.stevedore'
     libraryName = 'Banner-Item'
     artifact = 'banneritem'
 
-    libraryDescription = 'Library for use with cover views. Provide one of many adapter and shaper for that library'
+    libraryDescription = 'Library for use with stevedore views. Provide one of many adapter and shaper for that library'
 
     siteUrl = 'https://github.com/Artear/app_lib_banneritem_android'
     gitUrl = 'https://github.com/Artear/app_lib_banneritem_android.git'
@@ -50,8 +50,8 @@ static def getBranchName() {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion sdkVersion
+    buildToolsVersion buildToolsVersion
 
     def branch = getBranchName()
     def vCode = 0 + getVersionCode(branch)
@@ -80,22 +80,22 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Test
-    testImplementation "junit:junit:$junitVersion"
-    testImplementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-    androidTestImplementation "androidx.test:core:$testCoreVersion"
-    androidTestImplementation "androidx.test.ext:junit:$testCoreVersion"
-    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    testImplementation lib.junit.library
+    testImplementation lib.square.okHttp
+    androidTestImplementation lib.androidx.testCore
+    androidTestImplementation lib.androidx.extJunit
+    androidTestImplementation lib.androidx.testRunner
+    androidTestImplementation lib.espresso.core
 
     //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation lib.kotlin.standardLib
 
-    //CoverItem
-    implementation "com.artear.cover:coveritem:$coverItemVersion"
-    //Domain
-    implementation "com.artear.domain:domain:$domainVersion"
+    //Artear
+    implementation lib.artear.stevedoreItems
+    implementation lib.artear.domain
+
     //Ads
-    implementation "com.google.firebase:firebase-ads:$firebaseAdsVersion"
+    implementation lib.firebase.ads
 }
 
 dependencyUpdates.resolutionStrategy {

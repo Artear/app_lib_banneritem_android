@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
 import java.nio.charset.Charset
 

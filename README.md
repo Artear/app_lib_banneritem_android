@@ -1,20 +1,20 @@
 # Banner Item Library
 
-- Library for use with cover views. Provide one of many adapter and shaper for that library
+- Library for use with stevedore views. Provide one of many adapter and shaper for that library
 
 Download
 --------
 via Maven:
 ```xml
 <dependency>
-  <groupId>com.artear.cover</groupId>
+  <groupId>com.artear.stevedore</groupId>
   <artifactId>banneritem</artifactId>
   <version>0.0.7</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear.cover:banneritem:0.0.7'
+implementation 'com.artear.stevedore:banneritem:0.0.7'
 ```
 Banner Item Library requires at minimum Java 7 or Android 4.1.
 

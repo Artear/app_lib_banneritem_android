@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
-import com.artear.cover.coveritem.presentation.model.ArtearItem
-import com.artear.cover.coveritem.presentation.model.ArtearSection
-import com.artear.cover.coveritem.repository.model.block.Block
 import com.artear.domain.coroutine.DataShaper
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItem
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearSection
+import com.artear.stevedore.stevedoreitems.repository.model.box.Box
 
 
-class DfpShaper : DataShaper<Block, ArtearItem> {
+class DfpShaper : DataShaper<Box, ArtearItem> {
 
-    override suspend fun transform(input: Block): ArtearItem {
-        val blockContentDfp = (input.data as BlockContentDfp)
+    override suspend fun transform(input: Box): ArtearItem {
+        val blockContentDfp = (input.data as BoxDataDfp)
 
-        val data = DfpData(blockContentDfp.name, blockContentDfp.size, DfpStyle(input.style.weight))
+        val data = DfpData(blockContentDfp.name, blockContentDfp.size, input.style)
         return ArtearItem(data, ArtearSection())
     }
 
