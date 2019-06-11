@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
-import com.artear.cover.coveritem.presentation.model.ArtearObject
-import com.artear.cover.coveritem.presentation.model.ArtearStyle
+import com.artear.stevedore.stevedoreitems.repository.model.box.BoxData
 import com.artear.tools.media.Size
+import com.google.gson.annotations.JsonAdapter
 
-data class DfpData<T : DfpStyle>(val name: String, val size: Size,
-                                 val style: T) : ArtearObject<T>()
-
-open class DfpStyle(val weight: Float? = 1f) : ArtearStyle()
+@JsonAdapter(BoxDataDfpDeserializer::class)
+data class BoxDataDfp(val id: String, val name: String, val size: Size) : BoxData()

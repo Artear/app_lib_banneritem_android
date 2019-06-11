@@ -13,31 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
 import android.content.Context
 import android.graphics.Color
+import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.artear.cover.coveritem.presentation.contract.ArtearViewHolder
-import com.artear.cover.coveritem.presentation.model.ArtearSection
+import com.artear.stevedore.stevedoreitems.presentation.contract.ArtearViewHolder
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearSection
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest
 import com.google.android.gms.ads.doubleclick.PublisherAdView
-import kotlinx.android.synthetic.main.cover_dfp_view_holder.view.*
+import kotlinx.android.synthetic.main.stevedore_dfp_view_holder.view.*
 
 class DfpViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView), ArtearViewHolder<DfpData<*>> {
 
     override fun bind(model: DfpData<*>, artearSection: ArtearSection) {
 
-        val doubleClickBannerLayout = itemView.dfp_banner_layout
+        val doubleClickBannerLayout = itemView.dfpBannerLayout
 
         val backgroundColor = Color.parseColor(artearSection.backgroundColor ?: "#F7F7F7")
-        itemView.dfp_linearlayout.setBackgroundColor(backgroundColor)
+        itemView.dfpContentLayout.setBackgroundColor(backgroundColor)
 
         doubleClickBannerLayout.removeAllViews()
+
         doubleClickBannerLayout.minimumHeight = pxFromDp(itemView.context, model.size.height)
 
         val adView = PublisherAdView(itemView.context)
@@ -55,11 +57,11 @@ class DfpViewHolder(itemView: View) :
         }
         adView.isFocusable = false
         doubleClickBannerLayout.addView(adView)
-
     }
 
     private fun pxFromDp(context: Context, dp: Int): Int {
-        return (dp * context.resources.displayMetrics.density).toInt()
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(),
+                context.resources.displayMetrics).toInt()
     }
 
 }

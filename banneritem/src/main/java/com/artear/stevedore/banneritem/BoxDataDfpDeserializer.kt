@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.cover.banneritem
+package com.artear.stevedore.banneritem
 
-import com.artear.cover.coveritem.repository.getModelObject
+import com.artear.stevedore.stevedoreitems.repository.getModelObject
 import com.artear.tools.media.Size
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
 
-class BlockContentDfpDeserializer : JsonDeserializer<BlockContentDfp> {
+class BoxDataDfpDeserializer : JsonDeserializer<BoxDataDfp> {
 
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): BlockContentDfp {
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): BoxDataDfp {
 
         val id = json.asJsonObject.get("id").asString
         val name = json.asJsonObject.get("name").asString
         val dfpSize = json.getModelObject("size", context, Size::class.java)
 
-        return BlockContentDfp(id, name, dfpSize)
+        return BoxDataDfp(id, name, dfpSize)
     }
 }
