@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.stevedore.banneritem
+package com.artear.stevedore.banneritem.presentation
 
 import android.content.Context
 import android.graphics.Color
@@ -21,21 +21,21 @@ import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.artear.stevedore.stevedoreitems.presentation.contract.ArtearViewHolder
-import com.artear.stevedore.stevedoreitems.presentation.model.ArtearSection
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItemDecoration
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest
 import com.google.android.gms.ads.doubleclick.PublisherAdView
-import kotlinx.android.synthetic.main.stevedore_dfp_view_holder.view.*
+import kotlinx.android.synthetic.main.dfp_view_holder.view.*
 
 class DfpViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView), ArtearViewHolder<DfpData<*>> {
 
-    override fun bind(model: DfpData<*>, artearSection: ArtearSection) {
+    override fun bind(model: DfpData<*>, artearItemDecoration: ArtearItemDecoration) {
 
         val doubleClickBannerLayout = itemView.dfpBannerLayout
 
-        val backgroundColor = Color.parseColor(artearSection.backgroundColor ?: "#F7F7F7")
+        val backgroundColor = Color.parseColor(artearItemDecoration.backgroundColor ?: "#F7F7F7")
         itemView.dfpContentLayout.setBackgroundColor(backgroundColor)
 
         doubleClickBannerLayout.removeAllViews()

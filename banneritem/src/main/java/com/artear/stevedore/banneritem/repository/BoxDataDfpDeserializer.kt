@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.stevedore.banneritem
+package com.artear.stevedore.banneritem.repository
 
 import com.artear.stevedore.stevedoreitems.repository.getModelObject
 import com.artear.tools.media.Size

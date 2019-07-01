@@ -9,12 +9,12 @@ via Maven:
 <dependency>
   <groupId>com.artear.stevedore</groupId>
   <artifactId>banneritem</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear.stevedore:banneritem:0.0.7'
+implementation 'com.artear.stevedore:banneritem:0.0.8'
 ```
 Banner Item Library requires at minimum Java 7 or Android 4.1.
 
