@@ -2,6 +2,13 @@
 
 - Library for use with stevedore views. Provide one of many adapter and shaper for that library
 
+
+Version 
+--------
+
+[![Latest Version](https://api.bintray.com/packages/artearmobile/Android/Banner-Item/images/download.svg)](https://bintray.com/artearmobile/Android/Banner-Item/_latestVersion)
+
+
 Download
 --------
 via Maven:
