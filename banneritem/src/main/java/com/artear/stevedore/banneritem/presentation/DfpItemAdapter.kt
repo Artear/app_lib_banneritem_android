@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.stevedore.banneritem
+package com.artear.stevedore.banneritem.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.artear.stevedore.banneritem.R
 import com.artear.stevedore.stevedoreitems.presentation.contract.ArtearViewHolder
 import com.artear.stevedore.stevedoreitems.presentation.contract.SpanItemAdapter
 import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItem
-import com.artear.stevedore.stevedoreitems.presentation.model.ArtearSection
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItemDecoration
 import com.artear.stevedore.stevedoreitems.repository.model.box.BoxStyle
 
 
@@ -34,14 +35,14 @@ class DfpItemAdapter : SpanItemAdapter<DfpData<out BoxStyle>> {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.stevedore_dfp_view_holder, parent, false)
+        val view = inflater.inflate(R.layout.dfp_view_holder, parent, false)
         return DfpViewHolder(view)
     }
 
     override fun onBindViewHolderBase(holder: ArtearViewHolder<DfpData<out BoxStyle>>,
                                       model: DfpData<out BoxStyle>,
-                                      artearSection: ArtearSection) {
-        holder.bind(model, artearSection)
+                                      artearItemDecoration: ArtearItemDecoration) {
+        holder.bind(model, artearItemDecoration)
     }
 
     override fun onSpanSizeRequired(model: DfpData<out BoxStyle>): Int {

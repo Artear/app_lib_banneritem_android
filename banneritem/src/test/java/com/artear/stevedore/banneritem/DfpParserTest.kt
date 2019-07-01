@@ -15,6 +15,7 @@
  */
 package com.artear.stevedore.banneritem
 
+import com.artear.stevedore.banneritem.repository.BoxDataDfp
 import com.artear.stevedore.stevedoreitems.repository.deserializer.SizeDeserializer
 import com.artear.tools.media.Size
 import com.google.gson.Gson

@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.artear.stevedore.banneritem
+package com.artear.stevedore.banneritem.presentation
 
 import com.artear.domain.coroutine.DataShaper
+import com.artear.stevedore.banneritem.repository.BoxDataDfp
 import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItem
-import com.artear.stevedore.stevedoreitems.presentation.model.ArtearSection
+import com.artear.stevedore.stevedoreitems.presentation.model.ArtearItemDecoration
 import com.artear.stevedore.stevedoreitems.repository.model.box.Box
 
 
@@ -27,7 +28,7 @@ class DfpShaper : DataShaper<Box, ArtearItem> {
         val blockContentDfp = (input.data as BoxDataDfp)
 
         val data = DfpData(blockContentDfp.name, blockContentDfp.size, input.style)
-        return ArtearItem(data, ArtearSection())
+        return ArtearItem(data, ArtearItemDecoration())
     }
 
 

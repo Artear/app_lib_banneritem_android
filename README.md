@@ -2,6 +2,13 @@
 
 - Library for use with stevedore views. Provide one of many adapter and shaper for that library
 
+
+Version 
+--------
+
+[![Latest Version](https://api.bintray.com/packages/artearmobile/Android/Banner-Item/images/download.svg)](https://bintray.com/artearmobile/Android/Banner-Item/_latestVersion)
+
+
 Download
 --------
 via Maven:
@@ -9,12 +16,12 @@ via Maven:
 <dependency>
   <groupId>com.artear.stevedore</groupId>
   <artifactId>banneritem</artifactId>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.artear.stevedore:banneritem:0.0.7'
+implementation 'com.artear.stevedore:banneritem:0.0.8'
 ```
 Banner Item Library requires at minimum Java 7 or Android 4.1.
 
