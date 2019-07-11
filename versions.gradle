@@ -2,18 +2,18 @@ buildscript {
     ext {
         sdkVersion = 28
         buildToolsVersion = "28.0.3"
-        libraryVersion = "0.0.8"
+        libraryVersion = "0.0.9"
         versionLib = [
                 kotlinVersion   : '1.3.40',
                 android         : [
-                        gradleBuildToolsVersion: '3.4.1'
+                        gradleBuildToolsVersion: '3.4.2'
                 ],
                 firebase        : [
-                        adsVersion: "18.0.0"
+                        adsVersion: "18.1.0"
                 ],
                 artear          : [
                         domainVersion        : "0.0.8",
-                        stevedoreItemsVersion: "0.2.9"
+                        stevedoreItemsVersion: "0.2.10"
                 ],
                 espresso        : [
                         coreVersion: "3.2.0"
